@@ -715,6 +715,10 @@ app.delete("/api/characters/:id", verifyAdminToken, async (req, res) => {
   }
 });
 
+app.get('/', (req, res) => {
+  res.send("Hello from the backend!");
+});
+
 
 
 // Seeder for admin (run once)
