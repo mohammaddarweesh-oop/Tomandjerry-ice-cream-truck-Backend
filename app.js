@@ -22,12 +22,27 @@ require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 80;
 app.use(helmet());
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: "http://localhost:3000",
+//     credentials: true,
+//   })
+// );
+
+app.use(cors({
+  origin: function(origin, callback){
+    if(!origin) return callback(null, true);
+    const allowedOrigins = ['http://72.60.27.72:3000', 'http://localhost:3000'];
+    if(allowedOrigins.indexOf(origin) !== -1){
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
+
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(compression());
