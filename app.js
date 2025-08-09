@@ -20,7 +20,7 @@ const multer = require("multer");
 require("dotenv").config();
 
 const app = express();
-const PORT = process.env.PORT || 80;
+const PORT = process.env.PORT || 4000;
 app.use(helmet());
 // app.use(
 //   cors({
